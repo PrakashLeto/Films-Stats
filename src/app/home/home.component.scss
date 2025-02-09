@@ -1,0 +1,40 @@
+// * {
+// font-family: Cascadia Code;
+// }Outfit
+
+// * {
+//     font-family: Outfit;
+// }
+
+.internalMatGrid {
+  border: 1px solid red;
+  min-width: 96%;
+}
+
+mat-grid-tile {
+  background: rgb(13, 91, 117);
+}
+.compo {
+  color: rgb(21, 9, 192);
+  padding: 10px;
+  text-align: center;
+  border-style: inset;
+}
+.yellow {
+  background: rgb(238, 208, 111);
+}
+.grey {
+  background: rgb(191, 191, 207);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  overflow-y: scroll;
+  background: lightgray;
+  box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 10px;
+}

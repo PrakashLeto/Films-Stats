@@ -1,0 +1,72 @@
+.bar-wrap {
+    display: flex
+  }
+  .col {
+    display: block;
+    text-align:center;
+    width: var(--size)
+  }
+  .bar {
+    height: 50px;
+    width: 100%;
+    // border: 3px solid #000;
+    background: var(--background)
+  }
+  .cgreen {
+    color: green
+  }
+  .cred {
+    color: red
+  }
+  
+  ::-webkit-scrollbar {
+    width: 4px;
+    overflow-y: scroll;
+    background: lightgray;
+    box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+.film-title {
+  color: #2a004e;
+  font-weight: 600; font-size: 20px; white-space: pre-wrap; margin-bottom: 2px;
+}
+
+.film-subtitle {
+  color: #512b81;
+}
+
+.film-subtitle-2 {
+  color: #4477ce;
+  font-size: 14px; margin-bottom: 2px;
+}
+
+.film-subtitle-3 {
+  color: #0a91ab;
+}
+
+.banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.clipped {
+  padding: 20px;  
+  width: 320px;
+  background: #ddd;
+  -webkit-clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+  background-color: gold;
+}
+
+.clipped > * 
+{
+  max-width: 260px
+}
