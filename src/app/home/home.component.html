@@ -1,105 +1,8 @@
-<!-- <mat-grid-list cols="4" rowHeight="fit" style="height: 500px; width: 100%;" gutterSize="10">
-    <mat-grid-tile [colspan]="1">
-        <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-            <mat-label>Film Name</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-            <mat-label>Year</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="4">
-
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-            <mat-label>Genre</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-            <mat-label>Duration (in minutes)</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </mat-grid-tile>
-</mat-grid-list> -->
-
-<!-- <mat-grid-list cols="2" rowHeight="fit" style="height: 500px; width: 100%;" gutterSize="10">
-    <mat-grid-tile [colspan]="1" style="background-color: lightblue;">
-        <div class='internalMatGrid' >
-            <mat-grid-list cols="2" gutterSize="10">
-              <mat-grid-tile [colspan]="1">
-                <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-                    <mat-label>Genre</mat-label>
-                    <input matInput>
-                </mat-form-field>
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]="1">
-                <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-                    <mat-label>Genre</mat-label>
-                    <input matInput>
-                </mat-form-field>
-              </mat-grid-tile>
-              <mat-grid-tile>3</mat-grid-tile>
-              <mat-grid-tile>4</mat-grid-tile>
-            </mat-grid-list>
-        </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="1" style="background-color: lightyellow;">
-        <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-            <mat-label>Genre</mat-label>
-            <input matInput>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" style="width: 100%;" appearance="outline">
-            <mat-label>Genre</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </mat-grid-tile>
-</mat-grid-list> -->
-
-<!-- <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>
-      <div class='internalMatGrid' >
-        <mat-grid-list cols="2" rowHeight="2:1">
-          <mat-grid-tile>1</mat-grid-tile>
-          <mat-grid-tile>2</mat-grid-tile>
-          <mat-grid-tile>3</mat-grid-tile>
-          <mat-grid-tile>4</mat-grid-tile>
-        </mat-grid-list>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-  </mat-grid-list> -->
-
-<!-- <h5><u><i>Layout demo using Angular Material !!</i></u></h5>
-<div id="layoutContainer" style="height:100px;">
-    <div layout="row" layout-xs="column">
-        <div flex class="yellow compo">One</div>
-        <div flex="20" class="grey compo">Two</div>
-    </div>
-    <div layout="column" layout-xs="column">
-        <div flex="33" class="yellow compo">Three</div>
-        <div flex="66" class="grey compo">Four</div>
-    </div>
-</div> -->
-
-<div>
+<!-- <div>
     <div style="margin-bottom: 40px; padding: 0% 16%; text-align: center; height: 100%; align-content: center;">
         <div *ngIf="films.length == 0" style="font-family: Outfit, serif; font-size: 72px; font-weight: 600; opacity: 70%; margin-top: 100px;">
             <img style="height: 160px;" src="profits.ico">
         </div>
-        
-        <!-- <div *ngIf="films.length == 0" style="font-family: Outfit, serif; font-size: 72px; font-weight: 600; opacity: 70%; margin-top: 100px;">
-            Gentlemen, welcome to Fight Club.
-        </div> -->
 
         <div *ngIf="films.length == 0" style="font-family: Outfit, serif; font-size: 16px; opacity: 80%; margin-top: 100px; font-weight: 500;">
             As far back as I can remember, I always wanted to be a gangster.<br/>
@@ -149,39 +52,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div *ngIf="films.length > 0" style="display: flex; font-family: Outfit, serif;">
-            <div style="width: 14%; margin:0px 3px; padding: 10px; border: solid 1px #3e7b27; border-radius: 5px; color: #3e7b27; align-content: center;">
-                <div style="font-size: 14px;">Most Watched Day</div>
-                <div style="font-size: 32px; font-weight: 600;">{{getMostWatchedDay().day}}</div>
-                <div style="font-size: 20px;">{{getMostWatchedDay().count}} films</div>
-            </div>
-            <div style="width: 14%; margin:0px 3px; padding: 10px; border: solid 1px #3e7b27; border-radius: 5px; color: #3e7b27; align-content: center;">
-                <div style="font-size: 14px;">Most Watched Month</div>
-                <div style="font-size: 32px; font-weight: 600;">{{getMostWatchedMonth().month}}</div>
-                <div style="font-size: 20px;">{{getMostWatchedMonth().count}} films</div>
-            </div>
-            <div style="width: 14%; margin:0px 3px; padding: 10px; border: solid 1px #3e7b27; border-radius: 5px; color: #3e7b27; align-content: center;">
-                <div style="font-size: 14px;">Your Highest Rating is</div>
-                <div style="font-size: 32px; font-weight: 600;">{{getHighestRatingAndFilms()}}</div>
-                <div style="font-size: 20px;">2 films</div>
-            </div>
-            <div style="width: 14%; margin:0px 3px; padding: 10px; border: solid 1px #3e7b27; border-radius: 5px; color: #3e7b27; align-content: center;">
-                <div style="font-size: 14px;">Your Lowest Rating is</div>
-                <div style="font-size: 32px; font-weight: 600;">{{getLowestRatingAndFilms()}}</div>
-                <div style="font-size: 20px;">1 film</div>
-            </div>
-            <div style="width: 14%; margin:0px 3px; padding: 10px; border: solid 1px #3e7b27; border-radius: 5px; color: #3e7b27; align-content: center;">
-                <div style="font-size: 14px;">Your Favourite Language is</div>
-                <div style="font-size: 32px; font-weight: 600;">{{getMostWatchedLanguage()}}</div>
-                <div style="font-size: 20px;">11 films</div>
-            </div>
-            <div style="margin:0px 3px; padding: 10px; border: solid 1px #3e7b27; border-radius: 5px; color: #3e7b27; align-content: center;">
-                <div style="font-size: 14px;">You've Watched</div>
-                <div style="font-size: 32px; font-weight: 600;">29 hrs 6 mins</div>
-                <div style="font-size: 20px;">That's 1.2125 Days!</div>
-            </div>
-        </div> -->
     </div>
 
     <div *ngIf="films.length > 0" style="font-family: Outfit, serif; text-align: -webkit-center;">
@@ -196,10 +66,6 @@
             @for (stat of stats; track stat.no) {
                 <div ngxSlickItem class="slide">
                     <div style="margin:0px 3px; padding: 10px; align-content: center; text-align: center;">
-                        <!-- <div style="font-size: 20px; color: #44000d;">{{stat.subHeading1}}</div>
-                        <div style="font-size: 48px; font-weight: 600; color: #83142c;">{{stat.heading}}</div>
-                        <div style="font-size: 24px; color: #ad1d45;">{{stat.subHeading2}}</div> -->
-
                         <div style="font-size: 20px; color: #AE445A;">{{stat.subHeading1}}</div>
                         <div style="font-size: 48px; font-weight: 600; color: #4B4376;">{{stat.heading}}</div>
                         <div style="font-size: 24px; font-weight: 500; color: #432E54;">{{stat.subHeading2}}</div>
@@ -214,170 +80,111 @@
     <div *ngIf="films.length > 0" style="font-family: Outfit, serif; font-size: 12px; opacity: 65%; margin-top: 20px; font-weight: 400; text-align: center;">
         &#169; Prakash Leto<br/>
     </div>
-    
-    <!-- <div *ngIf="films.length > 0" style="display: flex; padding-bottom: 5%;"> -->
-        <!-- <div style="width: 50%;">
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Film Name</mat-label>
-                <input matInput>
-            </mat-form-field>
+</div> -->
 
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Year</mat-label>
-                <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Director</mat-label>
-                <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Genre</mat-label>
-                <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Duration (in minutes)</mat-label>
-                <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Country</mat-label>
-                <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Language</mat-label>
-                <input matInput>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" style="width: 60%;" appearance="outline">
-                <mat-label>Rating</mat-label>
-                <mat-select>
-                    @for (rating of ratings; track rating) {
-                    <mat-option [value]="rating.value">{{rating.viewValue}}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-
-            <div>
-                <button mat-flat-button style="width: 60%;">Log a Film</button>
-            </div>
-        </div> -->
-
-        <!-- <div style="width: 40%; margin-right: 20px; font-family: 'Outfit', serif; height: 2000px; overflow: auto;"> -->
-            <!-- <div *ngIf="excelData">
-                <mat-list style="overflow: auto; height: 2000px;">
-                    @for (film of films; track film) {
-                    <mat-list-item>
-                        <mat-card appearance="outlined" style="background-color: ghostwhite;">
-                            <mat-card-content>
-                                <div style="display: flex;">
-                                    <div style="text-align: center; align-content: center; width: 160px; border-right: solid 1px brown;">
-                                        <span matListItemTitle style="width: 100px; font-size: 42px; color: gray;">#{{film.no}}</span>
-                                        <span matListItemLine style="font-size: 16px;">{{ film.date | date: 'dd MMM' }}</span>
-                                        <span matListItemLine style="font-size: 24px;">{{ film.date | date: 'yyyy' }}</span>
-                                    </div>
-    
-                                    <div style="width: 100%; margin-left: 20px;">
-                                        <span matListItemTitle style="font-weight: 600; font-size: 26px; white-space: pre-wrap;">{{film.name}} ({{film.year}})</span>
-                                        <span matListItemLine style="font-size: 20px; color: dimgray;">by <span style="font-weight: 600;">{{film.director}}</span></span>
-                                        <span matListItemLine style="font-size: 16px; color: slategray;">{{film.genre}} - {{film.duration}}</span>
-                                        <span matListItemLine style="font-size: 16px;">{{film.country}}, {{film.language}}</span>
-                                    </div>
-    
-                                    <div style="margin-left: 20px; align-content: center; width: 160px; text-align: right;">
-                                        <span matListItemTitle style="font-weight: 600; font-size: 48px; color: goldenrod;">{{film.rating}}</span>
-                                    </div>
-                                </div>
-                            </mat-card-content>
-                        </mat-card>
-                    </mat-list-item>
-                    }
-                </mat-list>
-            </div> -->
-
-            <!-- <div *ngIf="excelData" style="padding-right: 10px;">
-                @for (film of films; track film) {
-                    <div>
-                        <mat-card appearance="outlined" class="mat-elevation-z2" style="background-color: snow; margin-bottom: 10px; border-color: snow; border-radius: 5px;">
-                            <mat-card-content>
-                                <div style="display: flex;">
-                                    <div style="text-align: center; align-content: center; width: 170px; border-right: solid 1px brown;">
-                                        <div style="font-size: 42px; color: gray;">#{{film.no}}</div>
-                                        <div style="font-size: 16px;">{{ film.date | date: 'dd MMM' }}</div>
-                                        <div style="font-size: 24px;">{{ film.date | date: 'yyyy' }}</div>
-                                    </div>
-    
-                                    <div style="width: 100%; margin-left: 15px;">
-                                        <div style="font-weight: 600; font-size: 26px; white-space: pre-wrap;">{{film.name}} ({{film.year}})</div>
-                                        <div style="font-size: 20px; color: dimgray;">by <span style="font-weight: 600;">{{film.director}}</span></div>
-                                        <div style="font-size: 16px; color: slategray;">{{film.genre}} | {{film.duration}}</div>
-                                        <div style="font-size: 16px;">{{film.country}} | {{film.language}}</div>
-                                    </div>
-    
-                                    <div style="margin-left: 15px; align-content: center; width: 160px; text-align: right;">
-                                        <div style="font-weight: 600; font-size: 48px; color: goldenrod;">{{film.rating}}</div>
-                                    </div>
-                                </div>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                }
-            </div>
+<!-- Responsive starts here -->
+<div [ngStyle]="{'padding': isPhone ? '10px' : '30px'}">
+    <div style="margin-bottom: 40px; padding: 0% 16%; text-align: center; height: 100%; align-content: center;"
+        [ngStyle]="{'padding': isPhone ? '0%' : '0% 16%', 'margin-bottom': isPhone ? '0px' : '40px'}">
+        <div *ngIf="films.length == 0" style="font-family: Outfit, serif; font-size: 72px; font-weight: 600; opacity: 70%; margin-top: 100px;"
+            [ngStyle]="{'margin-top': isPhone ? '60px' : '100px'}">
+            <img style="height: 160px;" [ngStyle]="{'height': isPhone ? '80px' : '160px'}" src="profits.ico">
         </div>
 
-        <div style=" width: 60%; margin-left: 20px;">
-            <mat-card *ngIf="minutesWatchedChartOptions" class="mat-elevation-z4" style="background-color: white; border-radius: 10px;">
-                <mat-card-content>
-                    <div>
-                        <canvasjs-chart [options]="minutesWatchedChartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        
-            <div style="display: flex; margin-top: 40px;">
-                <mat-card *ngIf="decadesChartOptions" class="mat-elevation-z4" style="width: 49%; background-color: white; border-radius: 10px;">
-                    <mat-card-content>
-                        <div *ngIf="decadesChartOptions">
-                            <canvasjs-chart [options]="decadesChartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-                <div style="width: 2%;"></div>
-                <mat-card *ngIf="languageChartOptions" style="width: 49%; background-color: white; border-radius: 10px;" class="mat-elevation-z4">
-                    <mat-card-content>
-                        <div *ngIf="languageChartOptions">
-                            <canvasjs-chart [options]="languageChartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        
-            <mat-card *ngIf="ratingChartOptions" class="mat-elevation-z4" style="margin-top: 40px; background-color: white; border-radius: 10px;">
-                <mat-card-content>
-                    <div *ngIf="ratingChartOptions">
-                        <canvasjs-chart [options]="ratingChartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-
-            <mat-card *ngIf="monthsWatchChartOptions" class="mat-elevation-z4" style="margin-top: 40px; background-color: white; border-radius: 10px;">
-                <mat-card-content>
-                    <div *ngIf="monthsWatchChartOptions">
-                        <canvasjs-chart [options]="monthsWatchChartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                    </div>
-                </mat-card-content>
-            </mat-card>
-        
-            <mat-card *ngIf="daysChartOptions" class="mat-elevation-z4" style="margin-top: 40px; background-color: white; border-radius: 10px;">
-                <mat-card-content>
-                    <div *ngIf="daysChartOptions">
-                        <canvasjs-chart [options]="daysChartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                    </div>
-                </mat-card-content>
-            </mat-card>
+        <div *ngIf="films.length == 0" style="font-family: Outfit, serif; font-size: 16px; opacity: 80%; margin-top: 100px; font-weight: 500;"
+            [ngStyle]="{'font-size': isPhone ? '12px' : '16px'}">
+            As far back as I can remember, I always wanted to be a gangster.<br/>
+            <span style="font-size: 14px; font-style: italic; opacity: 65%; font-weight: 300;" [ngStyle]="{'font-size': isPhone ? '12px' : '14px'}">Henry Hill, Goodfellas (1990)</span>
         </div>
-    </div> -->
+
+        <button mat-flat-button type="button" (click)="fileInput.value='';fileInput.click();" style="margin: 40px 0px; width: 200px; border-radius: 5px;">
+            <mat-icon><span class="material-symbols-outlined">upload</span></mat-icon>
+            <span>Let's Go</span>
+            <input #fileInput type="file" (change)="onFileChange($event)" style="display:none;" accept=".xlsx, .xls" />
+        </button>
+
+        <div *ngIf="films.length > 0" style="font-family: Outfit, serif; font-size: 16px; opacity: 80%; margin-top: 20px; font-weight: 500;"
+            [ngStyle]="{'font-size': isPhone ? '14px' : '16px'}">
+            Remember, Red, hope is a good thing, maybe the best of things, and no good thing ever dies.<br/>
+            <span style="font-size: 14px; font-style: italic; opacity: 65%; font-weight: 300;"
+                [ngStyle]="{'font-size': isPhone ? '12px' : '14px'}">Andy Dufresne, The Shawshank Redemption (1994)</span>
+        </div>
+
+        <div *ngIf="films.length > 0" style="font-family: Outfit, serif; font-size: 72px; font-weight: 600; opacity: 70%; margin-top: 30px;" 
+            [ngStyle]="{'font-size': isPhone ? '32px' : '72px'}">
+            {{nameYear[0]}}'s {{nameYear[1]}} Stats
+        </div>
+
+        <div *ngIf="films.length > 0" class="mat-elevation-z8" style="padding: 16px 100px; margin: 30px 0px;" [ngStyle]="{'padding': isPhone ? '0px' : '16px 100px'}">
+            <div style="display: flex; font-family: Outfit, serif;">
+                <div style="width: 25%; text-align: -webkit-center;">
+                    <div style="height: 200px; width: 200px; background-color: indigo; border-radius: 100px; align-content: center; display: grid;"
+                        [ngStyle]="{'height': isPhone ? '80px' : '200px', 'width': isPhone ? '80px' : '200px'}">
+                        <span style="font-size: 64px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '24px' : '64px'}">{{films.length}}</span>
+                        <span style="font-size: 20px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '10px' : '20px'}">FILMS</span>
+                    </div>
+                </div>
+                <div style="width: 25%; text-align: -webkit-center;">
+                    <div style="height: 200px; width: 200px; background-color: darkorange; border-radius: 100px; align-content: center; display: grid;"
+                        [ngStyle]="{'height': isPhone ? '80px' : '200px', 'width': isPhone ? '80px' : '200px'}">
+                        <span style="font-size: 64px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '24px' : '64px'}">{{calculateTotalMinutesWatched()}}</span>
+                        <span style="font-size: 20px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '10px' : '20px'}">MINUTES</span>
+                    </div>
+                </div>
+                <div style="width: 25%; text-align: -webkit-center;">
+                    <div style="height: 200px; width: 200px; background-color: darkgreen; border-radius: 100px; align-content: center; display: grid;"
+                        [ngStyle]="{'height': isPhone ? '80px' : '200px', 'width': isPhone ? '80px' : '200px'}">
+                        <span style="font-size: 64px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '24px' : '64px'}">{{getDirectorsCount()}}</span>
+                        <span style="font-size: 20px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '10px' : '20px'}">DIRECTORS</span>
+                    </div>
+                </div>
+                <div style="width: 25%; text-align: -webkit-center;">
+                    <div style="height: 200px; width: 200px; background-color: deeppink; border-radius: 100px; align-content: center; display: grid;"
+                        [ngStyle]="{'height': isPhone ? '80px' : '200px', 'width': isPhone ? '80px' : '200px'}">
+                        <span style="font-size: 64px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '24px' : '64px'}">{{getLanguageCount()}}</span>
+                        <span style="font-size: 20px; font-weight: 600; color: white;"
+                            [ngStyle]="{'font-size': isPhone ? '10px' : '20px'}">LANGUAGES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="films.length > 0" style="font-family: Outfit, serif; text-align: -webkit-center;">
+        <ngx-slick-carousel class="carousel" 
+                            #slickModal="slick-carousel" 
+                            [config]="slideConfig" 
+                            (init)="slickInit($event)"
+                            (breakpoint)="breakpoint($event)"
+                            (afterChange)="afterChange($event)"
+                            (beforeChange)="beforeChange($event)"
+                            style="width: 700px;"
+                            [ngStyle]="{'width': isPhone ? '300px' : '700px'}">
+            @for (stat of stats; track stat.no) {
+                <div ngxSlickItem class="slide">
+                    <div style="margin:0px 3px; padding: 10px; align-content: center; text-align: center;">
+                        <div style="font-size: 20px; color: #AE445A;"
+                            [ngStyle]="{'font-size': isPhone ? '14px' : '20px'}">{{stat.subHeading1}}</div>
+                        <div style="font-size: 48px; font-weight: 600; color: #4B4376;"
+                            [ngStyle]="{'font-size': isPhone ? '20px' : '48px'}">{{stat.heading}}</div>
+                        <div style="font-size: 24px; font-weight: 500; color: #432E54;"
+                            [ngStyle]="{'font-size': isPhone ? '16px' : '24px'}">{{stat.subHeading2}}</div>
+                    </div>
+                </div>
+            }
+        </ngx-slick-carousel>
+    </div>
+
+    <app-stats *ngIf="films.length > 0" [item]="films"></app-stats>
+
+    <div *ngIf="films.length > 0" style="font-family: Outfit, serif; font-size: 12px; opacity: 65%; margin-top: 20px; font-weight: 400; text-align: center;">
+        &#169; Prakash Leto<br/>
+    </div>
 </div>

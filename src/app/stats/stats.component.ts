@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import Chart from 'chart.js/auto';
-import { Colors, ChartData, registerables } from 'chart.js';
 import { Router } from '@angular/router';
 import { Film } from '../model/Film';
 import moment from 'moment';
 import { months } from '../model/Months';
+import { BreakpointObserver,Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-stats',
@@ -29,12 +29,24 @@ export class StatsComponent {
 
   public daysMap = new Map<string, Number>();
   public watchesByMonth: any[] = [];
+  
+  public isPhone: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public responsive: BreakpointObserver) {}
 
   ngOnInit() {
     // const currentState = this.router.lastSuccessfulNavigation;
     // this.filmsList = currentState?.extras?.state?.['data'];
+
+    this.responsive
+      .observe([Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        this.isPhone = false;
+        if (state.matches) {
+          this.isPhone = true;
+        }
+      });
+
     this.filmsList = this.item;
     this.processLanguages();
     this.prepareAllFilmsCharts();
@@ -55,7 +67,7 @@ export class StatsComponent {
         data: this.processAllFilms().data,
         // backgroundColor: '#0a91ab', // BCCCDC
         backgroundColor: '#48CFCB',
-        borderRadius: 5
+        borderRadius: this.isPhone ? 2 : 5
       }]
     };
 
@@ -68,12 +80,18 @@ export class StatsComponent {
           min: 0,
           max: 5,
           ticks: {
-            stepSize: 0.5
+            stepSize: 0.5,
+            font: {
+              size: this.isPhone ? 8 : 12
+            }
           }
         },
         x: {
           ticks: {
-            display: false
+            display: false,
+            font: {
+              size: this.isPhone ? 8 : 12
+            }
           }
         }
       },
@@ -89,7 +107,7 @@ export class StatsComponent {
           align: 'center',
           font: {
             weight: 'bold',
-            size: 20,
+            size: this.isPhone ? 10 : 20,
             family: 'Outfit, serif'
           },
           padding: 8,
@@ -137,9 +155,15 @@ export class StatsComponent {
     let options: any = {
       // responsive: true,
       maintainAspectRatio: false,
+      aspectRatio: this.isPhone ? 1.3 : 1,
       plugins: {
         legend: {
           position: 'right',
+          labels: {
+            font: {
+              size: this.isPhone ? 8 : 12,
+            }
+          }
         },
         title: {
           display: true,
@@ -149,7 +173,7 @@ export class StatsComponent {
           align: 'center',
           font: {
             weight: 'bold',
-            size: 20,
+            size: this.isPhone ? 10 : 20,
             family: 'Outfit, serif'
           },
           padding: 8,
@@ -177,11 +201,17 @@ export class StatsComponent {
     let options: any = {
       // responsive: true,
       maintainAspectRatio: false,
+      aspectRatio: this.isPhone ? 1.3 : 1,
       spacing: 0,
-      cutout: 80,
+      cutout: this.isPhone ? 60 : 80,
       plugins: {
         legend: {
           position: 'right',
+          labels: {
+            font: {
+              size: this.isPhone ? 8 : 12,
+            }
+          }
         },
         title: {
           display: true,
@@ -191,7 +221,7 @@ export class StatsComponent {
           align: 'center',
           font: {
             weight: 'bold',
-            size: 20,
+            size: this.isPhone ? 10 : 20,
             family: 'Outfit, serif'
           },
           padding: 8,
@@ -224,7 +254,7 @@ export class StatsComponent {
         // backgroundColor: ['#03045e',  '#262d79',  '#475492',  '#677bab',  '#88a2c4',  '#a9c9dd', '#caf0f6'],
         // backgroundColor: '#677bab',
         // backgroundColor: ['#ffadad',  '#ffd6a5',  '#fdffb6',  '#caffbf',  '#9bf6ff',  '#b2b9ff', '#ffc6ff'],
-        borderRadius: 4,
+        borderRadius: this.isPhone ? 2 : 5,
       }]
     };
 
@@ -238,12 +268,18 @@ export class StatsComponent {
           min: 0,
           // max: 5,
           ticks: {
-            stepSize: 1
+            stepSize: 1,
+            font: {
+              size: this.isPhone ? 8 : 12
+            }
           }
         },
         y: {
           ticks: {
-            display: true
+            display: true,
+            font: {
+              size: this.isPhone ? 8 : 12
+            }
           }
         }
       },
@@ -259,7 +295,7 @@ export class StatsComponent {
           align: 'center',
           font: {
             weight: 'bold',
-            size: 20,
+            size: this.isPhone ? 10 : 20,
             family: 'Outfit, serif'
           },
           padding: 8,
@@ -285,7 +321,7 @@ export class StatsComponent {
         '#80ff00', '#00ff00', '#00ff80',
         '#00ffff', '#0080ff', '#0000ff',
         '#8000ff', '#ff00ff', '#ff0080'],
-        borderRadius: 4,
+        borderRadius: this.isPhone ? 2 : 5,
       }]
     };
 
@@ -298,12 +334,18 @@ export class StatsComponent {
           min: 0,
           // max: 5,
           ticks: {
-            stepSize: 1
+            stepSize: 1,
+            font: {
+              size: this.isPhone ? 8 : 12
+            }
           }
         },
         y: {
           ticks: {
-            display: true
+            display: true,
+            font: {
+              size: this.isPhone ? 8 : 12
+            }
           }
         }
       },
@@ -319,7 +361,7 @@ export class StatsComponent {
           align: 'center',
           font: {
             weight: 'bold',
-            size: 20,
+            size: this.isPhone ? 10 : 20,
             family: 'Outfit, serif'
           },
           padding: 8,
@@ -436,7 +478,4 @@ export class StatsComponent {
     return month[0].value;
   }
 
-  public getFilmName() {
-
-  }
 }

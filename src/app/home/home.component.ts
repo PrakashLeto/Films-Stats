@@ -13,13 +13,10 @@ import * as XLSX from 'xlsx';
 import moment from 'moment';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { NavigationExtras, Router } from '@angular/router';
+import { months } from '../model/Months';
 import { StatsComponent } from '../stats/stats.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-
-interface Rating {
-  value: number;
-  viewValue: number;
-}
+import { BreakpointObserver,Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 interface Film {
   no: number,
@@ -47,33 +44,11 @@ export class HomeComponent {
   public excelData: any[] = [];
   public nameYear: string[] = [];
   public films: Film[] = [];
-  public minutesWatchedChartOptions: any;
-  public doughnutChartOptions: any;
-  public languageChartOptions: any;
-  public daysChartOptions: any;
-  public ratingChartOptions: any;
-  public monthsWatchChartOptions: any;
-  public decadesChartOptions: any;
   public daysMap = new Map<string, number>();
   public watchesByMonth: any[] = [];
   public totalMinutesWatched: Number = 0;
-  // private ratings: Rating[] = [
-  private months = [
-    { key: 1, value: 'Jan', label: 'January', },
-    { key: 2, value: 'Feb', label: 'February', },
-    { key: 3, value: 'Mar', label: 'March', },
-    { key: 4, value: 'Apr', label: 'April', },
-    { key: 5, value: 'May', label: 'May', },
-    { key: 6, value: 'Jun', label: 'June', },
-    { key: 7, value: 'Jul', label: 'July', },
-    { key: 8, value: 'Aug', label: 'August', },
-    { key: 9, value: 'Sep', label: 'September', },
-    { key: 10, value: 'Oct', label: 'October', },
-    { key: 11, value: 'Nov', label: 'November', },
-    { key: 12, value: 'Dec', label: 'December' }
-  ] as const;
-
   public slideConfig: any;
+  public isPhone: boolean = false;
 
   state = 0;
 
@@ -89,16 +64,25 @@ export class HomeComponent {
       arrows: true, 
       infinite: true,
       adaptiveHeight: true,
-      centerMode: true,
+      // centerMode: true,
       speed: 300,
       autoplay: true,
       // fade: true,
     };
+
+    this.responsive
+      .observe([Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        this.isPhone = false;
+        if (state.matches) {
+          this.isPhone = true;
+        }
+      });
   }
 
   public stats: { no: number, heading: string, subHeading1: string, subHeading2: string }[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public responsive: BreakpointObserver) {}
 
   public onFileChange(event: any): void {
     const file = event.target.files[0];
@@ -125,8 +109,8 @@ export class HomeComponent {
       this.films.push({ no: f.No, date: this.getDate(f.Date), name: f.Movie, year: f.Year, director: f.Director, genre: f.Genre, duration: f.Duration, country: f.Country, language: f.Language, rating: f.Rating });
     }
     this.processDays(this.films);
-    this.prepareChart();
     this.getMostWatchedMonth();
+    this.processMonths();
     // this.navigateToStats();
     this.prepareStats();
   }
@@ -144,214 +128,10 @@ export class HomeComponent {
     return moment.utc(dateString).add(1, 'days').toDate();
   }
 
-  private prepareChart(): void {
-    this.minutesWatchedChartOptions = {
-      theme: "light2",
-      title: {
-        text: 'In Minutes',
-        fontSize: 26,
-        margin: 25
-      },
-      subtitles: [
-        {
-          // text: "This is a Subtitle"
-          //Uncomment properties below to see how they behave
-          //fontColor: "red",
-          //fontSize: 30
-        }
-      ],
-      exportEnabled: true,
-      animationEnabled: true,
-      dataPointWidth: 5,
-      axisX: {
-        title: "Movies",
-        labelAngle: 270,
-        labelFontSize: 10,
-        labelFormatter: function (e: any) {
-          return e.value;
-        },
-        tickLength: 0,
-        titleFontSize: 14,
-        titleFontWeight: "bold",
-        interval: 1
-      },
-      axisY: {
-        title: "Duration (in Minutes)",
-        // labelFormatter: function () {
-        //   return "";
-        // },
-        tickLength: 0,
-        tickPlacement: "inside",
-        titleFontSize: 14,
-        titleFontWeight: "bold",
-        titlePadding: 50
-      },
-      data: [{
-        type: "column",
-        // indexLabel: "{x}",
-        color: "LightSeaGreen",
-        dataPoints: this.processTotalMoviesWatched(this.films)
-      }]
-    };
-
-    this.languageChartOptions = {
-      theme: "light2",
-      title: {
-        text: "Languages",
-        fontSize: 26,
-        margin: 25
-      },
-      exportEnabled: true,
-      animationEnabled: true,
-      legend: {
-        horizontalAlign: "right", // "center" , "right"
-        verticalAlign: "center",  // "top" , "bottom"
-        // fontSize: 10
-      },
-      data: [{
-        type: "doughnut",
-        showInLegend: true,
-        indexLabel: "{name}: {y}",
-        radius: "100%",
-        innerRadius: '70%',
-        dataPoints: this.processLanguages()
-      }]
-    };
-
-    this.decadesChartOptions = {
-      theme: "light2",
-      title: {
-        text: "Decades",
-        fontSize: 26,
-        margin: 25
-      },
-      animationEnabled: true,
-      exportEnabled: true,
-      data: [{
-        type: "pie",
-        // showInLegend: true,
-        indexLabel: " {name}: {y} ",
-        dataPoints: this.processDecades()
-      }]
-    };
-
-    this.ratingChartOptions = {
-      theme: "light2",
-      // width: 500,
-      title: {
-        text: "Top rated movies",
-        fontSize: 26,
-        margin: 25
-      },
-      exportEnabled: true,
-      animationEnabled: true,
-      dataPointWidth: 20,
-      axisX: {
-        title: "Movies",
-        labelAngle: 270,
-        labelFontSize: 10,
-        labelFormatter: function () {
-          return "";
-        },
-        tickLength: 0,
-        titleFontSize: 14,
-        titleFontWeight: "bold"
-      },
-      axisY: {
-        title: "Rating",
-        labelFormatter: function () {
-          return "";
-        },
-        tickLength: 0,
-        tickPlacement: "inside",
-        titleFontSize: 14,
-        titleFontWeight: "bold"
-      },
-      data: [{
-        type: "column",
-        indexLabel: "{y}",
-        dataPoints: this.sortFilms()
-      }]
-    };
-
-    this.monthsWatchChartOptions = {
-      theme: "light2", // "light1", "ligh2", "dark1", "dark2"
-      animationEnabled: true,
-      dataPointWidth: 60,
-      title: {
-        text: "Watches by Month",
-        fontSize: 26,
-        margin: 25
-      },
-      exportEnabled: true,
-      axisX: {
-        tickLength: 0,
-        titleFontSize: 14,
-        titleFontWeight: "bold",
-        interval: 1
-      },
-      axisY: {
-        title: "Number of Films",
-        lineThickness: 0,
-        includeZero: true,
-        tickLength: 0,
-        titleFontSize: 14,
-        titleFontWeight: "bold"
-      },
-      data: [{
-        type: "column",
-        indexLabel: '{y}',
-        dataPoints: this.processMonths()
-      }]
-    };
-
-    this.daysChartOptions = {
-      theme: "light2",
-      title: {
-        text: "Most watched Days",
-        fontSize: 26,
-        margin: 25
-      },
-      exportEnabled: true,
-      dataPointWidth: 40,
-      animationEnabled: true,
-      axisY: {
-        tickLength: 0,
-        labelFormatter: function () {
-          return "";
-        }
-      },
-      axisX: {
-        tickLength: 0
-      },
-      data: [{
-        type: "bar",
-        indexLabel: "{y}",
-        dataPoints: [
-          { y: this.daysMap.get('Saturday'), label: "Saturday" },
-          { y: this.daysMap.get('Friday'), label: "Friday" },
-          { y: this.daysMap.get('Thursday'), label: "Thursday" },
-          { y: this.daysMap.get('Wednesday'), label: "Wednesday" },
-          { y: this.daysMap.get('Tuesday'), label: "Tuesday" },
-          { y: this.daysMap.get('Monday'), label: "Monday" },
-          { y: this.daysMap.get('Sunday'), label: "Sunday" }
-        ]
-      }]
-    };
-  }
-
   private getMinutes(duration: string): number {
     let t = duration.split(' ');
     let trimmed = t.map(s => s.slice(0, -1));
     return Number(trimmed[0]) * 60 + Number(trimmed[1]);
-  }
-
-  private processTotalMoviesWatched(filmsArr: Film[]): any[] {
-    let totalMovies: any[] = [];
-    for (let f of filmsArr) {
-      totalMovies.push({ x: f.no, y: this.getMinutes(f.duration), label: f.name, toolTipContent: '{x} - {label} ({y} mins)' });
-    }
-    return totalMovies;
   }
 
   private processDays(filmsArr: Film[]): void {
@@ -393,12 +173,12 @@ export class HomeComponent {
   }
 
   private getMonthName(key: string): string {
-    let month = this.months.filter(m => m.key.toString() == key);
+    let month = months.filter(m => m.key.toString() == key);
     return month[0].value;
   }
 
   private getMonthNameByValue(value: string): string {
-    let month = this.months.filter(m => m.value == value);
+    let month = months.filter(m => m.value == value);
     return month[0].label;
   }
 
@@ -426,14 +206,6 @@ export class HomeComponent {
       totalMinutes = totalMinutes + this.getMinutes(f.duration);
     }
     return totalMinutes;
-  }
-
-  private sortFilms(): any[] {
-    let r: any[] = [];
-    this.films.forEach((e: Film) => {
-      r.push({ y: e.rating, label: e.name });
-    });
-    return r.sort((a, b) => b.y - a.y);
   }
 
   private getDecadesFromYear(year: number): any {
